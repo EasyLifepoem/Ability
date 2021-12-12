@@ -1,0 +1,29 @@
+package firstpro.abilityname.OtherEvent;
+
+import firstpro.abilityname.PlayerCheck;
+import firstpro.abilityname.PlayerEvent.AbilityPl;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+
+import java.util.HashMap;
+import java.util.UUID;
+
+
+public class PlayerCount implements Listener {
+
+    HashMap<UUID, AbilityPl> Plist = PlayerCheck.Plist;
+    UUID ud;
+    AbilityPl player = Plist.get(ud);
+    public void Playkillzombie(EntityDeathEvent e){
+        Player p = e.getEntity().getKiller();
+        ud = p.getUniqueId();
+        if(e.getEntityType().equals(EntityType.ZOMBIE) && e.getEntity().getKiller().equals(EntityType.PLAYER)){
+            player.setPlayerkz();
+
+
+        }
+    }
+}
