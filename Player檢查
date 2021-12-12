@@ -1,0 +1,35 @@
+package firstpro.abilityname;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+public class PlayerCheck implements Listener {
+    YamlConfiguration yml = new YamlConfiguration();
+    YamlConfiguration plYml;
+    UUID uuid;
+    //創建一個以玩家uuid為主的yml
+    File pl = new File("./plugins/AbilityTag/Player/" + uuid + ".yml");
+
+    //檢查新加入的玩家在檔案夾是不是存在
+    //存在就加載，不在就創建
+    @EventHandler
+    public void loadPlayer(PlayerJoinEvent e) throws IOException {
+        Bukkit.getServer().getLogger().info("ok");
+        //uuid取得
+        uuid = e.getPlayer().getUniqueId();
+        if(!pl.exists()){
+            pl.createNewFile();
+        }else{
+            
+        }
+    }
+}
