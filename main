@@ -1,0 +1,39 @@
+package firstpro.abilityname;
+
+import firstpro.abilityname.OtherEvent.PlayerCount;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
+
+
+public final class AbilityName extends JavaPlugin {
+    public static PlayerCheck pl;
+    //插件本體
+    public static AbilityName ab;
+
+
+    @Override
+    public void onEnable() {
+        // Plugin startup logic
+        ab = this;
+
+        getServer().getLogger().info("能力稱號插件讀取");
+        try {
+            PlayerCheck.Foldercheck();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //呼叫PlayerCheck()
+        Bukkit.getPluginManager().registerEvents(new PlayerCheck() , this);
+        Bukkit.getPluginManager().registerEvents(new PlayerCount() , this);
+    }
+
+    @Override
+    public void onDisable() {
+
+        getServer().getLogger().info("能力稱號插件關閉");
+        // Plugin shutdown logic
+    }
+}
