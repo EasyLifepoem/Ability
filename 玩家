@@ -1,0 +1,45 @@
+package firstpro.abilityname.PlayerEvent;
+
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+public class AbilityPl {
+
+    public static File file;
+    public static YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
+    private UUID uuid;
+    private int Zk;
+    private int Skk;
+    public static Player player;
+
+    public AbilityPl(Player player , File file1){
+        this.player = player;
+        this.file = file1;
+        uuid = player.getUniqueId();
+    }
+
+    public void getPlayer(){
+        Zk = yml.getInt("Kill.zombie");
+        Bukkit.getServer().getLogger().info("讀取成功zombie");
+        Skk = yml.getInt("Kill.skeleton");
+        Bukkit.getServer().getLogger().info("讀取成功skeleton");
+    }
+
+    public void setPlayerkz(){
+        Zk++;
+        yml.set("Kill.zombie", Zk);
+    }
+
+    public static void save(Player player){
+        try {
+            yml.save(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
